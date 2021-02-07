@@ -1,8 +1,14 @@
 import s from './style.module.css';
 
-const LayoutBlock = ({ id, title, description, urlBg, colorBg }) => {
+const LayoutBlock = ({ id, title, description, urlBg, colorBg, children }) => {
 
-    const style =  urlBg ? { backgroundImage: `url(${urlBg})` } : { backgroundColor: colorBg }
+    const style = {};
+    if (urlBg) { 
+        style.backgroundImage = `url(${urlBg})` 
+    }
+    if (colorBg) {
+        style.backgroundColor = colorBg 
+    }
     return (
         <section className = { s.root } id = { id } style={ style }>
             <div className = { s.wrapper }>
@@ -16,6 +22,9 @@ const LayoutBlock = ({ id, title, description, urlBg, colorBg }) => {
                     <div className={s.desc & s.full}>
                         {
                             description && (<p>{ description }</p>)
+                        }
+                        {
+                            children
                         }
                     </div>
                 </article>
